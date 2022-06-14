@@ -9,8 +9,8 @@ const gravity = 1.8
 class Player {
   constructor(){
     this.position = {
-      x: 100,
-      y: 100,
+      x: 50,
+      y: 50,
     }
     this.velocity = {
       x: 0,
@@ -29,20 +29,23 @@ class Player {
     this.draw()
     this.position.x += this.velocity.x
     this.position.y += this.velocity.y
+    console.log(this.position.y + this.velocity.y + this.height + '-' + canvas.height);
     if (this.position.y + this.height + this.velocity.y <= canvas.height) {
-        this.velocity.y += gravity
+      console.log('normal');
+      this.velocity.y += gravity
     }else this.velocity.y = 0
+
   }
 }
 
 class Platform {
-  constructor(){
+  constructor({x, y, width=500, height=40}){
     this.position = {
-      x: 150,
-      y: 400,
+      x,
+      y,
     }
-    this.width = 500
-    this.height = 40
+    this.width = width
+    this.height = height
   }
 
   draw(){
@@ -56,7 +59,12 @@ class Platform {
 }
 
 const player = new Player()
-const platform = new Platform()
+
+const platforms = [
+  new Platform({x:300, y:400}),
+  new Platform({x: 700, y: 500, width: 300, height: 20}),
+]
+
 const keys = {
   right: {
     pressed: false,
@@ -71,27 +79,38 @@ const animate = () => {
   requestAnimationFrame(animate)
   ctx.clearRect(0,0, canvas.width, canvas.height)
   player.update()
-  platform.draw()
-  if (keys.right.pressed) {
+  platforms.forEach(platform=>platform.draw())
+  // SIDEWAYS MOVEMENT CONDITIONING
+  if (keys.right.pressed && player.position.x < 400) {
     player.velocity.x = 10
-  }else if (keys.left.pressed) {
+  }else if (keys.left.pressed && player.position.x > 100) {
     player.velocity.x = -10
-  }else player.velocity.x = 0
-
-  if (
-    player.position.y +
-    player.height +
-    player.velocity.y >= platform.position.y
-    &&
-    player.position.y +
-    player.height <= platform.position.y
-    &&
-    player.position.x +
-    player.width >= platform.position.x
-    &&
-    player.position.x <= platform.position.x + platform.width) {
-      player.velocity.y = 0
+  }else {
+    player.velocity.x = 0
+    if (keys.right.pressed) {
+      platforms.forEach(platform=>platform.position.x -= 5)
+    }else if (keys.left.pressed) {
+      platforms.forEach(platform=>platform.position.x += 5)
+    }
   }
+
+  // PLATFORM BEHAVIOUR CONDITIONING
+  platforms.forEach(platform=>{
+    if (
+      player.position.y +
+      player.height +
+      player.velocity.y >= platform.position.y
+      &&
+      player.position.y +
+      player.height <= platform.position.y
+      &&
+      player.position.x +
+      player.width >= platform.position.x
+      &&
+      player.position.x <= platform.position.x + platform.width) {
+        player.velocity.y = 0
+    }
+  })
 }
 
 animate()
