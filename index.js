@@ -74,6 +74,7 @@ const keys = {
   }
 }
 
+var scrollTracker = 0
 
 const animate = () => {
   requestAnimationFrame(animate)
@@ -88,11 +89,15 @@ const animate = () => {
   }else {
     player.velocity.x = 0
     if (keys.right.pressed) {
+      scrollTracker += 5
       platforms.forEach(platform=>platform.position.x -= 5)
     }else if (keys.left.pressed) {
+      scrollTracker -= 5
       platforms.forEach(platform=>platform.position.x += 5)
     }
   }
+
+  console.log(scrollTracker);
 
   // PLATFORM BEHAVIOUR CONDITIONING
   platforms.forEach(platform=>{
@@ -111,6 +116,10 @@ const animate = () => {
         player.velocity.y = 0
     }
   })
+
+  if (scrollTracker>2000) {
+    console.log('you win!');
+  }
 }
 
 animate()
