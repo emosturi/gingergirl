@@ -77,19 +77,19 @@ class GenericObject {
   }
 }
 
-const createImage = (imageSrc) => {
+let createImage = (imageSrc) => {
   const image = new Image()
   image.src= imageSrc
   return image
 }
 
-const player = new Player()
+let player = new Player()
 
-const platformImage = createImage(platform);
-const backgroundImage = createImage(background);
-const hillImage = createImage(hills);
+let platformImage = createImage(platform);
+let backgroundImage = createImage(background);
+let hillImage = createImage(hills);
 
-const platforms = [
+let platforms = [
   new Platform({x:-1, y: 452, platformImage}),
   new Platform({x: platformImage.width-3, y: 452, image: platformImage}),
   new Platform({x: 2*platformImage.width+100, y: 452, image: platformImage}),
@@ -98,7 +98,7 @@ const platforms = [
   new Platform({x: 5*platformImage.width+100-8, y: 452, image: platformImage}),
 ]
 
-const genericObjects = [
+let genericObjects = [
   new GenericObject({x:-1, y: -1, image: backgroundImage}),
   new GenericObject({x: -1, y: 10, image: hillImage}),
 ]
@@ -112,7 +112,31 @@ const keys = {
   }
 }
 
-var scrollTracker = 0
+let scrollTracker = 0
+
+const init = () => {
+  player = new Player()
+
+  platformImage = createImage(platform);
+  backgroundImage = createImage(background);
+  hillImage = createImage(hills);
+
+  platforms = [
+    new Platform({x:-1, y: 452, platformImage}),
+    new Platform({x: platformImage.width-3, y: 452, image: platformImage}),
+    new Platform({x: 2*platformImage.width+100, y: 452, image: platformImage}),
+    new Platform({x: 3*platformImage.width+100-2, y: 452, image: platformImage}),
+    new Platform({x: 4*platformImage.width+100-4, y: 452, image: platformImage}),
+    new Platform({x: 5*platformImage.width+100-8, y: 452, image: platformImage}),
+  ]
+
+  genericObjects = [
+    new GenericObject({x:-1, y: -1, image: backgroundImage}),
+    new GenericObject({x: -1, y: 10, image: hillImage}),
+  ]
+
+  scrollTracker = 0
+}
 
 const animate = () => {
   requestAnimationFrame(animate)
@@ -158,7 +182,7 @@ const animate = () => {
   })
 
   if (scrollTracker>2000) console.log('you win!')
-  if (player.position.y > canvas.height)
+  if (player.position.y > canvas.height) init()
 }
 
 animate()

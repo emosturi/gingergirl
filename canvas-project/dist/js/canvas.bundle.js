@@ -86,14 +86,355 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/img/background.png":
+/*!********************************!*\
+  !*** ./src/img/background.png ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "072d51bcc9c09311d4c2a6708b05bddc.png");
+
+/***/ }),
+
+/***/ "./src/img/hills.png":
+/*!***************************!*\
+  !*** ./src/img/hills.png ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "cfffe4c371f5e11d372b398a87c51dd0.png");
+
+/***/ }),
+
+/***/ "./src/img/platform.png":
+/*!******************************!*\
+  !*** ./src/img/platform.png ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "ffab39d3487de561be1a081fcfb3806d.png");
+
+/***/ }),
+
 /***/ "./src/js/canvas.js":
 /*!**************************!*\
   !*** ./src/js/canvas.js ***!
   \**************************/
 /*! no exports provided */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/user/Documentos/dev/nico/game_portfolio/canvas-project/src/js/canvas.js: Unexpected token (162:0)\n\n\u001b[0m \u001b[90m 160 | \u001b[39m  \u001b[36mif\u001b[39m (scrollTracker\u001b[33m>\u001b[39m\u001b[35m2000\u001b[39m) console\u001b[33m.\u001b[39mlog(\u001b[32m'you win!'\u001b[39m)\u001b[0m\n\u001b[0m \u001b[90m 161 | \u001b[39m  \u001b[36mif\u001b[39m (player\u001b[33m.\u001b[39mposition\u001b[33m.\u001b[39my \u001b[33m>\u001b[39m canvas\u001b[33m.\u001b[39mheight)\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 162 | \u001b[39m}\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 163 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 164 | \u001b[39manimate()\u001b[0m\n\u001b[0m \u001b[90m 165 | \u001b[39m\u001b[90m/* Once again I dont need to call window.addEventListener here below,\u001b[39m\u001b[0m\n    at Parser._raise (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:742:17)\n    at Parser.raiseWithData (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:735:17)\n    at Parser.raise (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:729:17)\n    at Parser.unexpected (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:8757:16)\n    at Parser.parseExprAtom (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:10052:20)\n    at Parser.parseExprSubscripts (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:9602:23)\n    at Parser.parseMaybeUnary (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:9582:21)\n    at Parser.parseExprOps (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:9452:23)\n    at Parser.parseMaybeConditional (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:9425:23)\n    at Parser.parseMaybeAssign (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:9380:21)\n    at Parser.parseExpression (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:9332:23)\n    at Parser.parseStatementContent (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:11210:23)\n    at Parser.parseStatement (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:11081:17)\n    at Parser.parseIfStatement (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:11433:28)\n    at Parser.parseStatementContent (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:11126:21)\n    at Parser.parseStatement (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:11081:17)\n    at Parser.parseBlockOrModuleBlockBody (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:11656:25)\n    at Parser.parseBlockBody (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:11642:10)\n    at Parser.parseBlock (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:11626:10)\n    at Parser.parseFunctionBody (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:10634:24)\n    at Parser.parseArrowExpression (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:10603:10)\n    at Parser.parseParenAndDistinguishExpression (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:10221:12)\n    at Parser.parseExprAtom (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:9947:21)\n    at Parser.parseExprSubscripts (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:9602:23)\n    at Parser.parseMaybeUnary (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:9582:21)\n    at Parser.parseExprOps (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:9452:23)\n    at Parser.parseMaybeConditional (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:9425:23)\n    at Parser.parseMaybeAssign (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:9380:21)\n    at Parser.parseVar (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:11740:26)\n    at Parser.parseVarStatement (/home/user/Documentos/dev/nico/game_portfolio/canvas-project/node_modules/@babel/parser/lib/index.js:11549:10)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _img_platform_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../img/platform.png */ "./src/img/platform.png");
+/* harmony import */ var _img_hills_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../img/hills.png */ "./src/img/hills.png");
+/* harmony import */ var _img_background_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../img/background.png */ "./src/img/background.png");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+var canvas = document.querySelector('canvas');
+var ctx = canvas.getContext('2d');
+/* I dont need to call window.innerWidth here below, innerWidth only will work,
+since there is no other reference or scope other than window */
+
+canvas.width = 1024;
+canvas.height = 576;
+var gravity = 1.8;
+
+var Player = /*#__PURE__*/function () {
+  function Player() {
+    _classCallCheck(this, Player);
+
+    this.position = {
+      x: 50,
+      y: 50
+    };
+    this.velocity = {
+      x: 0,
+      y: 0
+    };
+    this.width = 30;
+    this.height = 30;
+  }
+
+  _createClass(Player, [{
+    key: "draw",
+    value: function draw() {
+      ctx.fillStyle = 'red';
+      ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      this.draw();
+      this.position.x += this.velocity.x;
+      this.position.y += this.velocity.y;
+
+      if (this.position.y + this.height + this.velocity.y <= canvas.height) {
+        this.velocity.y += gravity;
+      }
+    }
+  }]);
+
+  return Player;
+}();
+
+var Platform = /*#__PURE__*/function () {
+  function Platform(_ref) {
+    var x = _ref.x,
+        y = _ref.y,
+        image = _ref.image;
+
+    _classCallCheck(this, Platform);
+
+    this.position = {
+      x: x,
+      y: y
+    };
+    this.width = platformImage.width;
+    this.height = platformImage.height;
+    this.image = platformImage;
+  }
+
+  _createClass(Platform, [{
+    key: "draw",
+    value: function draw() {
+      ctx.drawImage(this.image, this.position.x, this.position.y);
+    }
+  }]);
+
+  return Platform;
+}();
+
+var GenericObject = /*#__PURE__*/function () {
+  function GenericObject(_ref2) {
+    var x = _ref2.x,
+        y = _ref2.y,
+        image = _ref2.image;
+
+    _classCallCheck(this, GenericObject);
+
+    this.position = {
+      x: x,
+      y: y
+    };
+    this.width = image.width;
+    this.height = image.height;
+    this.image = image;
+  }
+
+  _createClass(GenericObject, [{
+    key: "draw",
+    value: function draw() {
+      ctx.drawImage(this.image, this.position.x, this.position.y);
+    }
+  }]);
+
+  return GenericObject;
+}();
+
+var createImage = function createImage(imageSrc) {
+  var image = new Image();
+  image.src = imageSrc;
+  return image;
+};
+
+var player = new Player();
+var platformImage = createImage(_img_platform_png__WEBPACK_IMPORTED_MODULE_0__["default"]);
+var backgroundImage = createImage(_img_background_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
+var hillImage = createImage(_img_hills_png__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var platforms = [new Platform({
+  x: -1,
+  y: 452,
+  platformImage: platformImage
+}), new Platform({
+  x: platformImage.width - 3,
+  y: 452,
+  image: platformImage
+}), new Platform({
+  x: 2 * platformImage.width + 100,
+  y: 452,
+  image: platformImage
+}), new Platform({
+  x: 3 * platformImage.width + 100 - 2,
+  y: 452,
+  image: platformImage
+}), new Platform({
+  x: 4 * platformImage.width + 100 - 4,
+  y: 452,
+  image: platformImage
+}), new Platform({
+  x: 5 * platformImage.width + 100 - 8,
+  y: 452,
+  image: platformImage
+})];
+var genericObjects = [new GenericObject({
+  x: -1,
+  y: -1,
+  image: backgroundImage
+}), new GenericObject({
+  x: -1,
+  y: 10,
+  image: hillImage
+})];
+var keys = {
+  right: {
+    pressed: false
+  },
+  left: {
+    pressed: false
+  }
+};
+var scrollTracker = 0;
+
+var init = function init() {
+  player = new Player();
+  platformImage = createImage(_img_platform_png__WEBPACK_IMPORTED_MODULE_0__["default"]);
+  backgroundImage = createImage(_img_background_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
+  hillImage = createImage(_img_hills_png__WEBPACK_IMPORTED_MODULE_1__["default"]);
+  platforms = [new Platform({
+    x: -1,
+    y: 452,
+    platformImage: platformImage
+  }), new Platform({
+    x: platformImage.width - 3,
+    y: 452,
+    image: platformImage
+  }), new Platform({
+    x: 2 * platformImage.width + 100,
+    y: 452,
+    image: platformImage
+  }), new Platform({
+    x: 3 * platformImage.width + 100 - 2,
+    y: 452,
+    image: platformImage
+  }), new Platform({
+    x: 4 * platformImage.width + 100 - 4,
+    y: 452,
+    image: platformImage
+  }), new Platform({
+    x: 5 * platformImage.width + 100 - 8,
+    y: 452,
+    image: platformImage
+  })];
+  genericObjects = [new GenericObject({
+    x: -1,
+    y: -1,
+    image: backgroundImage
+  }), new GenericObject({
+    x: -1,
+    y: 10,
+    image: hillImage
+  })];
+  scrollTracker = 0;
+};
+
+var animate = function animate() {
+  requestAnimationFrame(animate);
+  ctx.fillStyle = 'white';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  genericObjects.forEach(function (genericObject) {
+    return genericObject.draw();
+  });
+  platforms.forEach(function (platform) {
+    return platform.draw();
+  });
+  player.update(); // SIDEWAYS MOVEMENT CONDITIONING
+
+  if (keys.right.pressed && player.position.x < 400) {
+    player.velocity.x = 10;
+  } else if (keys.left.pressed && player.position.x > 100) {
+    player.velocity.x = -10;
+  } else {
+    player.velocity.x = 0;
+
+    if (keys.right.pressed) {
+      scrollTracker += 5;
+      platforms.forEach(function (platform) {
+        return platform.position.x -= 5;
+      });
+      genericObjects.forEach(function (genericObject) {
+        return genericObject.position.x -= 2;
+      });
+    } else if (keys.left.pressed) {
+      scrollTracker -= 5;
+      platforms.forEach(function (platform) {
+        return platform.position.x += 5;
+      });
+      genericObjects.forEach(function (genericObject) {
+        return genericObject.position.x += 2;
+      });
+    }
+  } // PLATFORM BEHAVIOUR CONDITIONING
+
+
+  platforms.forEach(function (platform) {
+    if (player.position.y + player.height + player.velocity.y >= platform.position.y && player.position.y + player.height <= platform.position.y && player.position.x + player.width >= platform.position.x && player.position.x <= platform.position.x + platform.width) {
+      player.velocity.y = 0;
+    }
+  });
+  if (scrollTracker > 2000) console.log('you win!');
+  if (player.position.y > canvas.height) init();
+};
+
+animate();
+/* Once again I dont need to call window.addEventListener here below,
+addEventListener only will work,
+since there is no other reference or scope other than window */
+
+addEventListener('keydown', function (_ref3) {
+  var keyCode = _ref3.keyCode;
+
+  switch (keyCode) {
+    case 37:
+      keys.left.pressed = true;
+      break;
+
+    case 39:
+      keys.right.pressed = true;
+      break;
+
+    case 38:
+      player.velocity.y -= 30;
+      break;
+
+    case 40:
+      break;
+  }
+});
+addEventListener('keyup', function (_ref4) {
+  var keyCode = _ref4.keyCode;
+
+  switch (keyCode) {
+    case 37:
+      keys.left.pressed = false;
+      break;
+
+    case 39:
+      keys.right.pressed = false;
+      break;
+
+    case 38:
+      break;
+
+    case 40:
+      break;
+  }
+});
 
 /***/ })
 
