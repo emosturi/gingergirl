@@ -1,6 +1,7 @@
 import platform from '../img/platform.png'
 import hills from '../img/hills.png'
 import background from '../img/background.png'
+import platformTallImage from '../img/platformSmallTall.png';
 
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
@@ -8,7 +9,7 @@ const ctx = canvas.getContext('2d')
 since there is no other reference or scope other than window */
 canvas.width = 1024
 canvas.height = 576
-const gravity = 1.8
+const gravity = 2.5
 
 
 
@@ -22,6 +23,7 @@ class Player {
       x: 0,
       y: 0,
     }
+    this.speed = 10
     this.width = 30
     this.height = 30
   }
@@ -51,9 +53,9 @@ class Platform {
       x,
       y,
     }
-    this.width =  platformImage.width
-    this.height = platformImage.height
-    this.image = platformImage
+    this.width =  image.width
+    this.height = image.height
+    this.image = image
   }
 
   draw(){
@@ -86,22 +88,13 @@ let createImage = (imageSrc) => {
 let player = new Player()
 
 let platformImage = createImage(platform);
+let platformTall = createImage(platformTallImage);
 let backgroundImage = createImage(background);
 let hillImage = createImage(hills);
 
-let platforms = [
-  new Platform({x:-1, y: 452, platformImage}),
-  new Platform({x: platformImage.width-3, y: 452, image: platformImage}),
-  new Platform({x: 2*platformImage.width+100, y: 452, image: platformImage}),
-  new Platform({x: 3*platformImage.width+100-2, y: 452, image: platformImage}),
-  new Platform({x: 4*platformImage.width+100-4, y: 452, image: platformImage}),
-  new Platform({x: 5*platformImage.width+100-8, y: 452, image: platformImage}),
-]
+let platforms = []
 
-let genericObjects = [
-  new GenericObject({x:-1, y: -1, image: backgroundImage}),
-  new GenericObject({x: -1, y: 10, image: hillImage}),
-]
+let genericObjects = []
 
 const keys = {
   right: {
@@ -118,16 +111,20 @@ const init = () => {
   player = new Player()
 
   platformImage = createImage(platform);
+  platformTall = createImage(platformTallImage);
   backgroundImage = createImage(background);
   hillImage = createImage(hills);
 
   platforms = [
-    new Platform({x:-1, y: 452, platformImage}),
+    new Platform({x:-1, y: 452, image:platformImage}),
+    new Platform({x: 6*platformImage.width+100-platformTall.width-8, y: 300, image: platformTall}),
     new Platform({x: platformImage.width-3, y: 452, image: platformImage}),
     new Platform({x: 2*platformImage.width+100, y: 452, image: platformImage}),
     new Platform({x: 3*platformImage.width+100-2, y: 452, image: platformImage}),
     new Platform({x: 4*platformImage.width+100-4, y: 452, image: platformImage}),
     new Platform({x: 5*platformImage.width+100-8, y: 452, image: platformImage}),
+    new Platform({x: 6*platformImage.width+400, y: 452, image: platformImage}),
+    new Platform({x: 7*platformImage.width+650, y: 452, image: platformImage}),
   ]
 
   genericObjects = [
@@ -138,6 +135,8 @@ const init = () => {
   scrollTracker = 0
 }
 
+init()
+
 const animate = () => {
   requestAnimationFrame(animate)
   ctx.fillStyle = 'white'
@@ -147,30 +146,36 @@ const animate = () => {
   player.update()
   // SIDEWAYS MOVEMENT CONDITIONING
   if (keys.right.pressed && player.position.x < 400) {
-    player.velocity.x = 10
-  }else if (keys.left.pressed && player.position.x > 100) {
-    player.velocity.x = -10
+    player.velocity.x = player.speed
+  }else if (
+    (keys.left.pressed &&
+    player.position.x > 100)
+    ||
+    (keys.left.pressed &&
+    scrollTracker === 0 &&
+    player.position.x > 0)) {
+    player.velocity.x = -player.speed
   }else {
     player.velocity.x = 0
     if (keys.right.pressed) {
-      scrollTracker += 5
-      platforms.forEach(platform=>platform.position.x -= 5)
-      genericObjects.forEach(genericObject => genericObject.position.x -=2);
-    }else if (keys.left.pressed) {
-      scrollTracker -= 5
-      platforms.forEach(platform=>platform.position.x += 5)
-      genericObjects.forEach(genericObject => genericObject.position.x +=2);
+      scrollTracker +=player.speed
+      platforms.forEach(platform=>platform.position.x -=player.speed)
+      genericObjects.forEach(genericObject => genericObject.position.x -= player.speed*0.66);
+    }else if (keys.left.pressed && scrollTracker > 0) {
+      scrollTracker -= player.speed
+      platforms.forEach(platform=>platform.position.x +=player.speed)
+      genericObjects.forEach(genericObject => genericObject.position.x += player.speed*0.66);
     }
   }
 
   // PLATFORM BEHAVIOUR CONDITIONING
   platforms.forEach(platform=>{
     if (
-      player.position.y +
+      player.position.y-2 +
       player.height +
       player.velocity.y >= platform.position.y
       &&
-      player.position.y +
+      player.position.y-2 +
       player.height <= platform.position.y
       &&
       player.position.x +
@@ -181,7 +186,7 @@ const animate = () => {
     }
   })
 
-  if (scrollTracker>2000) console.log('you win!')
+  if (scrollTracker>4750) console.log('you win!')
   if (player.position.y > canvas.height) init()
 }
 
