@@ -273,22 +273,42 @@ var Player = /*#__PURE__*/function () {
       y: 0
     };
     this.speed = 10;
-    this.width = 416 * 0.2;
-    this.height = 454 * 0.2;
-    this.image = createImage(_img_IdleRight_16_png__WEBPACK_IMPORTED_MODULE_7__["default"]);
+    this.width = 416 * 0.4;
+    this.height = 454 * 0.4;
     this.frames = 0;
+    this.sprites = {
+      run: {
+        left: createImage(_img_RunLeft_20_png__WEBPACK_IMPORTED_MODULE_4__["default"]),
+        right: createImage(_img_RunRight_20_png__WEBPACK_IMPORTED_MODULE_5__["default"])
+      },
+      idle: {
+        left: createImage(_img_IdleLeft_16_png__WEBPACK_IMPORTED_MODULE_6__["default"]),
+        right: createImage(_img_IdleRight_16_png__WEBPACK_IMPORTED_MODULE_7__["default"])
+      },
+      jump: {
+        left: createImage(_img_JumpLeft_30_png__WEBPACK_IMPORTED_MODULE_8__["default"]),
+        right: createImage(_img_JumpRight_30_png__WEBPACK_IMPORTED_MODULE_9__["default"])
+      }
+    };
+    this.currentSprite = this.sprites.idle.right;
   }
 
   _createClass(Player, [{
     key: "draw",
     value: function draw() {
-      ctx.drawImage(this.image, 416 * this.frames, 0, 416, 454, this.position.x, this.position.y, this.width, this.height);
+      ctx.drawImage(this.currentSprite, 416 * this.frames, 0, 416, 454, this.position.x, this.position.y, this.width, this.height);
     }
   }, {
     key: "update",
     value: function update() {
       this.frames++;
-      if (this.frames === 16) this.frames = 0;
+
+      if (this.frames > 15 && (this.currentSprite === this.sprites.idle.right || this.currentSprite === this.sprites.idle.left)) {
+        this.frames = 0;
+      } else if (this.frames > 19 && (this.currentSprite === this.sprites.run.left || this.currentSprite === this.sprites.run.right)) {
+        this.frames = 0;
+      }
+
       this.draw();
       this.position.x += this.velocity.x;
       this.position.y += this.velocity.y;
@@ -375,8 +395,12 @@ var keys = {
   },
   left: {
     pressed: false
+  },
+  up: {
+    pressed: false
   }
 };
+var lastKey;
 var scrollTracker = 0;
 
 var init = function init() {
@@ -476,10 +500,25 @@ var animate = function animate() {
 
 
   platforms.forEach(function (platform) {
-    if (player.position.y - 2 + player.height + player.velocity.y >= platform.position.y && player.position.y - 2 + player.height <= platform.position.y && player.position.x + player.width >= platform.position.x && player.position.x <= platform.position.x + platform.width) {
+    if (player.position.y - 2 + player.height + player.velocity.y >= platform.position.y && player.position.y - 2 + player.height <= platform.position.y && player.position.x + player.width - 60 >= platform.position.x && player.position.x + 70 <= platform.position.x + platform.width) {
       player.velocity.y = 0;
     }
-  });
+  }); // SWITCHING SPRITES CONDITIONAL
+
+  if (keys.right.pressed && lastKey === 'right' && player.currentSprite !== player.sprites.run.right) {
+    player.frames = 1;
+    player.currentSprite = player.sprites.run.right;
+  } else if (keys.left.pressed && lastKey === 'left' && player.currentSprite !== player.sprites.run.left) {
+    player.frames = 1;
+    player.currentSprite = player.sprites.run.left;
+  } else if (!keys.left.pressed && lastKey === 'left' && player.currentSprite !== player.sprites.idle.left) {
+    player.frames = 1;
+    player.currentSprite = player.sprites.idle.left;
+  } else if (!keys.right.pressed && lastKey === 'right' && player.currentSprite !== player.sprites.idle.right) {
+    player.frames = 1;
+    player.currentSprite = player.sprites.idle.right;
+  }
+
   if (scrollTracker > 4750) console.log('you win!');
   if (player.position.y > canvas.height) init();
 };
@@ -495,14 +534,17 @@ addEventListener('keydown', function (_ref3) {
   switch (keyCode) {
     case 37:
       keys.left.pressed = true;
+      lastKey = 'left';
       break;
 
     case 39:
       keys.right.pressed = true;
+      lastKey = 'right';
       break;
 
     case 38:
-      player.velocity.y -= 30;
+      player.velocity.y -= 35;
+      keys.up.pressed = true;
       break;
 
     case 40:
@@ -522,6 +564,9 @@ addEventListener('keyup', function (_ref4) {
       break;
 
     case 38:
+      setTimeout(function () {
+        keys.up.pressed = false;
+      }, 300);
       break;
 
     case 40:

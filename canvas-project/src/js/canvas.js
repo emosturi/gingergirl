@@ -30,15 +30,29 @@ class Player {
       y: 0,
     }
     this.speed = 10
-    this.width = 416 *0.2
-    this.height = 454 *0.2
-    this.image = createImage(spriteIdleRight)
+    this.width = 416 * 0.4
+    this.height = 454 * 0.4
     this.frames = 0
+    this.sprites = {
+      run:{
+        left: createImage(spriteRunLeft),
+        right: createImage(spriteRunRight),
+      },
+      idle:{
+        left: createImage(spriteIdleLeft),
+        right: createImage(spriteIdleRight),
+      },
+      jump:{
+        left: createImage(spriteJumpLeft),
+        right: createImage(spriteJumpRight),
+      }
+    }
+    this.currentSprite = this.sprites.idle.right
   }
 
   draw() {
     ctx.drawImage(
-      this.image,
+      this.currentSprite,
       416 * this.frames,
       0,
       416,
@@ -52,7 +66,23 @@ class Player {
 
   update() {
     this.frames++
-    if(this.frames===16)this.frames=0
+    if( this.frames > 15 &&
+      (this.currentSprite ===
+        this.sprites.idle.right ||
+        this.currentSprite ===
+        this.sprites.idle.left
+      )
+    ){
+      this.frames=0
+    }else if( this.frames > 19 &&
+      (this.currentSprite ===
+        this.sprites.run.left ||
+        this.currentSprite ===
+        this.sprites.run.right
+      )
+    ){
+      this.frames = 0
+    }
     this.draw()
     this.position.x += this.velocity.x
     this.position.y += this.velocity.y
@@ -121,8 +151,13 @@ const keys = {
   },
   left: {
     pressed: false,
-  }
+  },
+  up: {
+    pressed: false,
+  },
 }
+
+let lastKey
 
 let scrollTracker = 0
 
@@ -178,8 +213,14 @@ const animate = () => {
     player.velocity.x = 0
     if (keys.right.pressed) {
       scrollTracker +=player.speed
-      platforms.forEach(platform=>platform.position.x -=player.speed)
-      genericObjects.forEach(genericObject => genericObject.position.x -= player.speed*0.66);
+      platforms.forEach(
+        platform=>
+        platform.position.x -=
+        player.speed)
+      genericObjects.forEach(
+        genericObject =>
+        genericObject.position.x -=
+        player.speed*0.66);
     }else if (keys.left.pressed && scrollTracker > 0) {
       scrollTracker -= player.speed
       platforms.forEach(platform=>platform.position.x +=player.speed)
@@ -198,14 +239,37 @@ const animate = () => {
       player.height <= platform.position.y
       &&
       player.position.x +
-      player.width >= platform.position.x
+      player.width - 60 >= platform.position.x
       &&
-      player.position.x <= platform.position.x + platform.width) {
+      player.position.x + 70 <= platform.position.x + platform.width) {
         player.velocity.y = 0
     }
   })
 
-  if (scrollTracker>4750) console.log('you win!')
+  // SWITCHING SPRITES CONDITIONAL
+  if (keys.right.pressed && lastKey==='right' &&
+    player.currentSprite !==
+    player.sprites.run.right) {
+      player.frames = 1
+      player.currentSprite = player.sprites.run.right
+  }else if (keys.left.pressed && lastKey==='left' &&
+    player.currentSprite !==
+    player.sprites.run.left) {
+      player.frames = 1
+      player.currentSprite = player.sprites.run.left
+  }else if (!keys.left.pressed && lastKey==='left' &&
+    player.currentSprite !==
+    player.sprites.idle.left) {
+      player.frames = 1
+      player.currentSprite = player.sprites.idle.left
+  }else if (!keys.right.pressed && lastKey==='right' &&
+    player.currentSprite !==
+    player.sprites.idle.right) {
+      player.frames = 1
+      player.currentSprite = player.sprites.idle.right
+  }
+
+  if (scrollTracker>4750) console.log('you win!');
   if (player.position.y > canvas.height) init()
 }
 
@@ -217,14 +281,17 @@ addEventListener('keydown', ({keyCode})=>{
   switch (keyCode) {
     case 37:
       keys.left.pressed = true
+      lastKey = 'left'
       break
 
     case 39:
       keys.right.pressed = true
+      lastKey = 'right'
       break
 
     case 38:
-      player.velocity.y -= 30
+      player.velocity.y -= 35
+      keys.up.pressed = true
       break
 
     case 40:
@@ -243,6 +310,9 @@ addEventListener('keyup', ({keyCode})=>{
       break
 
     case 38:
+      setTimeout(function () {
+        keys.up.pressed = false
+      }, 300)
       break
 
     case 40:
