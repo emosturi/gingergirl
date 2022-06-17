@@ -2,6 +2,12 @@ import platform from '../img/platform.png'
 import hills from '../img/hills.png'
 import background from '../img/background.png'
 import platformTallImage from '../img/platformSmallTall.png';
+import spriteRunLeft from '../img/RunLeft(20).png'
+import spriteRunRight from '../img/RunRight(20).png'
+import spriteIdleLeft from '../img/IdleLeft(16).png'
+import spriteIdleRight from '../img/IdleRight(16).png'
+import spriteJumpLeft from '../img/JumpLeft(30).png'
+import spriteJumpRight from '../img/JumpRight(30).png'
 
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
@@ -16,24 +22,37 @@ const gravity = 2.5
 class Player {
   constructor(){
     this.position = {
-      x: 50,
-      y: 50,
+      x: 250,
+      y: 250,
     }
     this.velocity = {
       x: 0,
       y: 0,
     }
     this.speed = 10
-    this.width = 30
-    this.height = 30
+    this.width = 416 *0.2
+    this.height = 454 *0.2
+    this.image = createImage(spriteIdleRight)
+    this.frames = 0
   }
 
   draw() {
-    ctx.fillStyle = 'red'
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+    ctx.drawImage(
+      this.image,
+      416 * this.frames,
+      0,
+      416,
+      454,
+      this.position.x,
+      this.position.y,
+      this.width,
+      this.height
+    )
   }
 
   update() {
+    this.frames++
+    if(this.frames===16)this.frames=0
     this.draw()
     this.position.x += this.velocity.x
     this.position.y += this.velocity.y

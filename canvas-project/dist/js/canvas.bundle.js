@@ -86,6 +86,84 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/img/IdleLeft(16).png":
+/*!**********************************!*\
+  !*** ./src/img/IdleLeft(16).png ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "33c2c031c8a3b90a3b081503290d1ff0.png");
+
+/***/ }),
+
+/***/ "./src/img/IdleRight(16).png":
+/*!***********************************!*\
+  !*** ./src/img/IdleRight(16).png ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "377b112d759fd173a46a1e910ab265fa.png");
+
+/***/ }),
+
+/***/ "./src/img/JumpLeft(30).png":
+/*!**********************************!*\
+  !*** ./src/img/JumpLeft(30).png ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "e94119753efcabd3557c97f020a911bf.png");
+
+/***/ }),
+
+/***/ "./src/img/JumpRight(30).png":
+/*!***********************************!*\
+  !*** ./src/img/JumpRight(30).png ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "c053be85d15a6826902e665125d43b86.png");
+
+/***/ }),
+
+/***/ "./src/img/RunLeft(20).png":
+/*!*********************************!*\
+  !*** ./src/img/RunLeft(20).png ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "b566d4e2790d325cd19c0e41166823d0.png");
+
+/***/ }),
+
+/***/ "./src/img/RunRight(20).png":
+/*!**********************************!*\
+  !*** ./src/img/RunRight(20).png ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "c64229e0c9d36c33540f112b2de49535.png");
+
+/***/ }),
+
 /***/ "./src/img/background.png":
 /*!********************************!*\
   !*** ./src/img/background.png ***!
@@ -151,11 +229,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _img_hills_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../img/hills.png */ "./src/img/hills.png");
 /* harmony import */ var _img_background_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../img/background.png */ "./src/img/background.png");
 /* harmony import */ var _img_platformSmallTall_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../img/platformSmallTall.png */ "./src/img/platformSmallTall.png");
+/* harmony import */ var _img_RunLeft_20_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../img/RunLeft(20).png */ "./src/img/RunLeft(20).png");
+/* harmony import */ var _img_RunRight_20_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../img/RunRight(20).png */ "./src/img/RunRight(20).png");
+/* harmony import */ var _img_IdleLeft_16_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../img/IdleLeft(16).png */ "./src/img/IdleLeft(16).png");
+/* harmony import */ var _img_IdleRight_16_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../img/IdleRight(16).png */ "./src/img/IdleRight(16).png");
+/* harmony import */ var _img_JumpLeft_30_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../img/JumpLeft(30).png */ "./src/img/JumpLeft(30).png");
+/* harmony import */ var _img_JumpRight_30_png__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../img/JumpRight(30).png */ "./src/img/JumpRight(30).png");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+
 
 
 
@@ -175,27 +265,30 @@ var Player = /*#__PURE__*/function () {
     _classCallCheck(this, Player);
 
     this.position = {
-      x: 50,
-      y: 50
+      x: 250,
+      y: 250
     };
     this.velocity = {
       x: 0,
       y: 0
     };
     this.speed = 10;
-    this.width = 30;
-    this.height = 30;
+    this.width = 416 * 0.2;
+    this.height = 454 * 0.2;
+    this.image = createImage(_img_IdleRight_16_png__WEBPACK_IMPORTED_MODULE_7__["default"]);
+    this.frames = 0;
   }
 
   _createClass(Player, [{
     key: "draw",
     value: function draw() {
-      ctx.fillStyle = 'red';
-      ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+      ctx.drawImage(this.image, 416 * this.frames, 0, 416, 454, this.position.x, this.position.y, this.width, this.height);
     }
   }, {
     key: "update",
     value: function update() {
+      this.frames++;
+      if (this.frames === 16) this.frames = 0;
       this.draw();
       this.position.x += this.velocity.x;
       this.position.y += this.velocity.y;
